@@ -1,4 +1,7 @@
 import React from 'react';
+import Contracts from './Contracts'
+import Display from './Display'
+
 // import * as firebase from 'firebase';
 import 'firebase/firestore';
 import firebase from "./firestore";
@@ -9,8 +12,10 @@ class User extends React.Component {
     constructor() {
         super();
         this.state = {
-         email: '',
-         fullname: ''
+         lastname: '',
+         fullname: '',
+         hours: '',
+         company:''
         };
       }
 
@@ -28,21 +33,26 @@ class User extends React.Component {
         });
         const userRef = db.collection('test').add({
           fullname: this.state.fullname,
-          email: this.state.email
+          lastname: this.state.lastname,
+          hours: this.state.hours,
+          company : this.state.company
         });  
         this.setState({
           fullname: '',
-          email: ''        
+          lastname: '',
+          hours: ''  ,
+          company : ''      
         });
       };
 
 
-      
+
 
 
   render() {
     return (
-        <form onSubmit={this.addUser}>
+        <div>
+                    <form onSubmit={this.addUser}>
           <input
             type="text"
             name="fullname"
@@ -52,14 +62,32 @@ class User extends React.Component {
  
           />
           <input
-            type="email"
-            name="email"
-            placeholder="Full name"
+            type="text"
+            name="lastname"
+            placeholder="Last name"
             onChange={this.updateInput}
-            value={this.state.email}
+            value={this.state.lastname}
           />
+              <input
+            type="text"
+            name="hours"
+            placeholder="Hours worked"
+            onChange={this.updateInput}
+            value={this.state.hours}
+          />
+                    <input
+            type="company"
+            name="company"
+            placeholder="Company"
+            onChange={this.updateInput}
+            value={this.state.company}
+          />
+          
+          
           <button type="submit" onSubmit={this.addUser}>Submit</button>
         </form>
+                <Display />
+       </div>
         );
       }
    }

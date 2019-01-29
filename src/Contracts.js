@@ -1,41 +1,63 @@
 import React from 'react';
+import User from './User'
 // import * as firebase from 'firebase';
 import 'firebase/firestore';
 import firebase from "./firestore";
 
 
+var test = 'cndd';
+
 
 class Contracts extends React.Component {
-    showstuff (){
-        const db = firebase.firestore();
-db.settings({
-  timestampsInSnapshots: true
-});
 
-db.collection("contracts")
-    .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            var company =doc.data();
-            
-            console.log(doc.id, " => ", doc.data());
-            // console.log(company);
-        });
-    })
+    constructor(props){
+        super(props);
+        this.state={
+            rate:'',
+            cName:'cndd'
+        }
+        this.showstuff=this.showstuff.bind(this);
+        // this.toggleCompany=this.toggleCompany.bind(this);
+
     }
-
-        
     
-  render() {
-    return (
-        <div>
-            {this.showstuff()}
-   
+  
+    showstuff() {
+        const db = firebase.firestore();
 
-        </div>
-    )
-      }
-   }
+        // console.log(`the props are ${this.props}`)
+      db.doc(`contracts/${this.state.cName}`)
+      .get()
+      .then((snapshot) => {
+        // console.log(snapshot.data().hourlyRate)
+        var rate123 =(snapshot.data().hourlyRate);
+        this.setState({
+            rate: rate123,
+        })
+        // const rate =parseInt('7');
+
+    });
+       
+    } 
+
+
+
+    render() {
+        return (
+            <div>
+                {this.showstuff()}
+               <div>
+                   <div>
+                       <div>
+                       this.rate is {this.state.rate}
+                       </div>
+                   </div>
+               </div>
+
+
+            </div>
+        )
+    }
+}
 
 export default Contracts;
