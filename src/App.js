@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import firebase from './firestore'
+
+
+
+const db= firebase.firestore();
+
+const refDoc = db.collection('contracts');
+
 
 class App extends Component {
+
+
+  
+
+
   render() {
     return (
       <div className="App">
