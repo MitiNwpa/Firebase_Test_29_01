@@ -1,6 +1,5 @@
 import React from 'react';
-import Contracts from './Contracts'
-import Display from './Display'
+
 
 // import * as firebase from 'firebase';
 import 'firebase/firestore';
@@ -86,7 +85,7 @@ class User extends React.Component {
           
           <button type="submit" onSubmit={this.addUser}>Submit</button>
         </form>
-                <Display />
+                
        </div>
         );
       }

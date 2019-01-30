@@ -1,15 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {Router} from '@reach/router'
+import { Link } from '@reach/router'
+import Home from './Home';
+import Contracts from './Contracts'
+import User from './User'
+import SiteSelect from './SiteSelect'
+import Navigation from './Navigation'
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
-import User from './User';
-import Contracts from './Contracts';
+import Activity from './Activity';
+import DocketEntry from './DocketEntry';
+import DocketEntry_1 from './DocketEntry_1';
+
+
+
 
 
 ReactDOM.render(
 <div>
-<User /><Contracts />
+<Router>
+                    <Home path='/' />
+                    <SiteSelect path='/siteselect' />
+                    <User path='/user' />
+                    <Contracts path='/contracts' />
+                    <Activity path='/activity' />
+                    <DocketEntry path='docketentry' />
+                    <DocketEntry_1 path='docketentry_1' />
+                    
+</Router> 
 </div>
 
 
