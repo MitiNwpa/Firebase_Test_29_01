@@ -4,7 +4,10 @@ class DocketEntry_1 extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            ccNumber:'1234'
+            activityName:'Dirt removal',
+            company: 'cndd',
+            ccNumber:'1234',
+            site:'High Street'
         }
     }
     render(){

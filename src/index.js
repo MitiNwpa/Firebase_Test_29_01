@@ -13,6 +13,7 @@ import * as serviceWorker from './serviceWorker';
 import Activity from './Activity';
 import DocketEntry from './DocketEntry';
 import DocketEntry_1 from './DocketEntry_1';
+import Confirm from './Confirm';
 
 
 
@@ -28,7 +29,7 @@ ReactDOM.render(
                     <Activity path='/activity' />
                     <DocketEntry path='docketentry' />
                     <DocketEntry_1 path='docketentry_1' />
-                    
+                    <Confirm path='confirm' />
 </Router> 
 </div>
 
