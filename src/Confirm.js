@@ -3,19 +3,22 @@ import { Link } from '@reach/router';
 import 'firebase/firestore';
 import firebase from "./firestore";
 
+const db = firebase.firestore();
+const him = db.collection('promise');
+
 class Confirm extends React.Component {
 
     constructor() {
         super()
         this.state = {
-            cName: '',
+            cName:'' ,
             email: '',
             hRate: '',
             oRate: '',
-            activityName: 'Dirt removal',
-            company: 'cndd',
-            ccNumber: '6545',
-            site: 'High Street',
+            activityName: '',
+            company: '',
+            ccNumber:'',
+            site: '',
             hours: '',
             totalHours: ''
         }
@@ -23,7 +26,10 @@ class Confirm extends React.Component {
         this.renderDocket = this.renderDocket.bind(this);
         this.calcHours = this.calcHours.bind(this)
         this.addDocket = this.addDocket.bind(this);
-        this.submitAll = this.submitAll.bind(this);
+   
+    }
+    componentDidMount(){
+        this.renderDocket();
     }
 
 /*     componentWillMount() {
@@ -36,7 +42,7 @@ class Confirm extends React.Component {
 
     } */
 
-    renderUser = e => {
+/*     renderUser = e => {
         console.log('user renderer')
         // e.preventDefault();
         const db = firebase.firestore();
@@ -52,9 +58,9 @@ class Confirm extends React.Component {
                     oRate: snapshot.data().oRate
                 })
             });
-    }
+    } */
 
-    renderDocket = e => {
+/*     renderDocket = e => {
         console.log('docket renderer')
 
         // e.preventDefault();
@@ -70,6 +76,46 @@ class Confirm extends React.Component {
                     hours: snapshot.data().hours
                 })
             });
+    } */
+
+    renderUser = e => {
+     var promise = firebase.firestore().doc(`user/cndd`).get();
+            promise.then((snapshot) => {
+
+
+                this.setState({
+                    cName: snapshot.data().cName,
+                    email: snapshot.data().email,
+                    hRate: snapshot.data().hRate,
+                    oRate: snapshot.data().oRate
+                })
+                this.calcHours();
+            })
+            .catch(error => {
+
+            })
+    }
+
+    renderDocket = e => {
+
+        console.log('docket renderer')
+
+        // e.preventDefault();
+        var promise =firebase.firestore().doc(`dockets/ixzBKWPXD8zuPPsBW1a4`).get();
+            promise.then((snapshot) => {
+               
+                this.setState({
+                    activityName: snapshot.data().activityName,
+                    ccNumber: snapshot.data().ccNumber,
+                    company: snapshot.data().company,
+                    hours: snapshot.data().hours
+                })
+                this.renderUser();
+            })
+                .catch(error => {
+                    
+                })
+            
     }
 
     calcHours() {
@@ -87,12 +133,14 @@ class Confirm extends React.Component {
 
 
     addDocket = e => {
-        // e.preventDefault();
-        const db = firebase.firestore();
-        db.settings({
-            timestampsInSnapshots: true
-        });
-        const userRef = db.collection('test').add({
+        // this.renderUser();
+        e.preventDefault();
+        
+        
+        const ref = him.doc();
+        
+        ref.set({
+            id:ref.id,
             cName: this.state.cName,
             email: this.state.email,
             hRate: this.state.hRate,
@@ -103,28 +151,30 @@ class Confirm extends React.Component {
             site: this.state.site,
             hours: this.state.hours,
             totalHours: this.state.totalHours
+        })
+        .then(function(){
+            console.error('Success');
+        })
+        .catch(function(error){
+            console.error("Error adding document: ", error);  
         });
     }
 
-    submitAll() {
-        this.renderUser();
-        this.renderDocket();
-        this.calcHours();
-        this.addDocket();
-    }
-
-
-
     render() {
-        return (
-            <div>
-                <p>This is Confirm Selection</p>
-                {/* {console.log(this.state.oRate)} */}
-
-                <button onClick={this.submitAll}>total hours are</button>
-                <div>hello {this.state.totalHours}</div>
-            </div>
-        )
+        
+        if(this.state.totalHours !== null){
+            return (
+                <div>
+                    <p>This is Confirm Selection</p>
+                    {console.log(this.state.oRate)}
+                    {/* <button onClick={this.renderDocket}>get info</button> */}
+                    <button onClick={this.addDocket}> Add Docket</button>
+                    <div>hello {this.state.totalHours}</div>
+                    <div></div>
+                </div>
+            )
+        }
+        
     }
 
 }

@@ -14,6 +14,8 @@ import Activity from './Activity';
 import DocketEntry from './DocketEntry';
 import DocketEntry_1 from './DocketEntry_1';
 import Confirm from './Confirm';
+import ListDockets from './ListDockets';
+
 
 
 
@@ -30,6 +32,7 @@ ReactDOM.render(
                     <DocketEntry path='docketentry' />
                     <DocketEntry_1 path='docketentry_1' />
                     <Confirm path='confirm' />
+                    <ListDockets path='listdockets' />
 </Router> 
 </div>
 
