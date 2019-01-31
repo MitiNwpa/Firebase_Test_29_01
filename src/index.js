@@ -24,6 +24,7 @@ import Approval from './Approval';
 
 ReactDOM.render(
 <div>
+    <Navigation />
 <Router>
                     <Home path='/' />
                     <SiteSelect path='/siteselect' />

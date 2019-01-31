@@ -17,7 +17,6 @@ class Activity extends React.Component{
         return(
             <div>
                 <p>This is Activity Selection</p>
-
                 <Link to='/docketentry'>
                 <button>
                 Dirt</button>

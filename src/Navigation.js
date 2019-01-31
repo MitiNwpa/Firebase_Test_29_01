@@ -9,13 +9,14 @@ import SiteSelect from './SiteSelect'
 
  
 
-
+const bg={color:'blue',
+backgroundColor:'red'}
 class Navigation extends React.Component{
 
     render(){
         return(
-            <div>
-                              
+            <div style={bg}>
+                          Welcome Indiana    
           
                 </div>
               
