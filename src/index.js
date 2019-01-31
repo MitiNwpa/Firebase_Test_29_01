@@ -15,6 +15,7 @@ import DocketEntry from './DocketEntry';
 import DocketEntry_1 from './DocketEntry_1';
 import Confirm from './Confirm';
 import ListDockets from './ListDockets';
+import Approval from './Approval';
 
 
 
@@ -33,6 +34,7 @@ ReactDOM.render(
                     <DocketEntry_1 path='docketentry_1' />
                     <Confirm path='confirm' />
                     <ListDockets path='listdockets' />
+                    <Approval path='approval' /> 
 </Router> 
 </div>
 

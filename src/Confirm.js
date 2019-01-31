@@ -4,7 +4,7 @@ import 'firebase/firestore';
 import firebase from "./firestore";
 
 const db = firebase.firestore();
-const him = db.collection('promise');
+const refDoc = db.collection('promise');
 
 class Confirm extends React.Component {
 
@@ -135,9 +135,8 @@ class Confirm extends React.Component {
     addDocket = e => {
         // this.renderUser();
         e.preventDefault();
-        
-        
-        const ref = him.doc();
+               
+        const ref = refDoc.doc();
         
         ref.set({
             id:ref.id,

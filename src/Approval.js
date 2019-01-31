@@ -5,8 +5,14 @@ const db = firebase.firestore();
 const refDoc = db.collection('promise');
 
 
+const divStyle = {
+    color: 'red',
+    border: '50px solid pink'
+  };
+
+
 // .where("cName", '==', 'hrishi')
-class ListDockets extends Component{
+class Approval extends Component{
     constructor(){
         super();
         this.state = {
@@ -32,14 +38,24 @@ class ListDockets extends Component{
           console.error("Error removing document: ", error);
         });
       }
-    
-    //   handleChange = (e) => {
-    //     const t = e.target
-    //     this.setState({
-    //       [t.name]: t.value
-    //     })
-    //   }
 
+      approveDocket = (e) => {
+        refDoc.doc(e.target.value).update({
+            'site' :"Accepted"
+           
+        }
+        
+        )
+    }
+
+    rejectDocket = (e) => {
+        refDoc.doc(e.target.value).update({
+            'site' :"rejected"
+            
+        }
+        
+        )
+    }
 
       renderDockets () {
         const ListItem = this.state.items.map((item, index) => {
@@ -49,7 +65,9 @@ class ListDockets extends Component{
               <br/>
               {item.company}
 
-              <button value={item.id} onClick={this.deleteDocket}>X</button>
+              <button value={item.id} onClick={this.rejectDocket}>X</button>
+              <button value={item.id} onClick={this.approveDocket}> ✓</button>
+
               <div>
                   approval status is {item.site}
               </div>
@@ -64,16 +82,17 @@ class ListDockets extends Component{
         )
       }
 
-
-    
+ 
     render(){
         return(
-            <div>
-                All Dockets here
+            <div style={divStyle}>
+                Approval stage
+                <br />
+                I am the site engineeeerrrr
                 {this.renderDockets()}
             </div>
         )
     }
 }
 
-export default ListDockets;
+export default Approval;
