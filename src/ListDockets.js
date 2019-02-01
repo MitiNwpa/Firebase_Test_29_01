@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import firebase from './firestore'
-import './index.css'
+import './index.css';
+import { navigate } from '@reach/router';
+import DocketDetials from './DocketDetails'
+
 const db = firebase.firestore();
 const refDoc = db.collection('promise');
 
@@ -14,7 +17,7 @@ class ListDockets extends Component {
       // status: 'rejected'
     }
     this.changeclass = this.changeclass.bind(this);
-    this.approveIt = this.approveIt.bind(this);
+    // this.approveIt = this.approveIt.bind(this);
   }
 
   componentWillMount() {
@@ -48,6 +51,8 @@ class ListDockets extends Component {
 
 
 
+
+
   renderDockets() {
     const ListItem = this.state.items.map((item, index) => {
       return (
@@ -57,6 +62,13 @@ class ListDockets extends Component {
           {item.company}
 
           <button value={item.id} onClick={this.deleteDocket}>X</button>
+          {/* <button onClick={this.sendId(item)}>Show More</button> */}
+          <button onClick={() => navigate(`/docketdetails/${item.id}`)}>
+          <div>
+
+          </div>
+          start</button>  
+
           <div>
             approval status is {item.site}
           </div>
