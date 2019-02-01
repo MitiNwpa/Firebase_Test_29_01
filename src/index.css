@@ -12,3 +12,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+li{
+  background-color: aquamarine;
+  margin: 20px;
+}
+
+li.Accepted{
+  background-color: green;
+}
+
+li.rejected{
+  background-color: red;
+
+}
