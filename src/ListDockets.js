@@ -54,34 +54,116 @@ class ListDockets extends Component {
 
 
   renderDockets() {
-    const ListItem = this.state.items.map((item, index) => {
-      return (
-        <li key={item.id} id={item.id} className={item.site}>
-          {item.email}
-          <br />
-          {item.company}
+    const PendingDocket = this.state.items.map((item, index) => {
 
-          <button value={item.id} onClick={this.deleteDocket}>X</button>
-          {/* <button onClick={this.sendId(item)}>Show More</button> */}
-          <button onClick={() => navigate(`/docketdetails/${item.id}`)}>
-          <div>
+      if (item.site === '') {
+        return (
+          <li key={item.id} id={item.id} className={item.site}>
+            {item.email}
+            <br />
+            {item.company}
 
-          </div>
-          start</button>  
+            <button value={item.id} onClick={this.deleteDocket}>X</button>
+            {/* <button onClick={this.sendId(item)}>Show More</button> */}
+            <button onClick={() => navigate(`/docketdetails/${item.id}`)}>
+              <div>
 
-          <div>
-            approval status is {item.site}
-          </div>
-        </li>
-      )
-    })
+              </div>
+              start</button>
+
+            <div>
+              approval status is {item.site}
+            </div>
+          </li>
+        )
+      }
+    }
+    )
+
+
+    const ApprovedDocket = this.state.items.map((item, index) => {
+
+      if (item.site === 'Accepted') {
+        return (
+          <li key={item.id} id={item.id} className={item.site}>
+            {item.email}
+            <br />
+            {item.company}
+
+            <button value={item.id} onClick={this.deleteDocket}>X</button>
+            {/* <button onClick={this.sendId(item)}>Show More</button> */}
+            <button onClick={() => navigate(`/docketdetails/${item.id}`)}>
+              <div>
+
+              </div>
+              start</button>
+
+            <div>
+              approval status is {item.site}
+            </div>
+          </li>
+        )
+      }
+    }
+    )
+
+
+    const RejectedDocket = this.state.items.map((item, index) => {
+
+      if (item.site === 'rejected') {
+        return (
+          <li key={item.id} id={item.id} className={item.site}>
+            {item.email}
+            <br />
+            {item.company}
+
+            <button value={item.id} onClick={this.deleteDocket}>X</button>
+            {/* <button onClick={this.sendId(item)}>Show More</button> */}
+            <button onClick={() => navigate(`/docketdetails/${item.id}`)}>
+              <div>
+
+              </div>
+              start</button>
+
+            <div>
+              approval status is {item.site}
+            </div>
+          </li>
+        )
+      }
+    }
+    )
 
     return (
       <ul>
-        {ListItem}
+        <div>Pending
+          {PendingDocket}
+
+        </div>
+
+        <div>Approved 
+          {ApprovedDocket}
+        </div>
+        <div>
+          Rejected
+          {RejectedDocket}
+
+        </div>
+
       </ul>
     )
   }
+
+
+
+
+
+
+
+
+
+
+
   // where('site' , '==', 'rejected')
 
   changeclass() {
@@ -146,11 +228,7 @@ class ListDockets extends Component {
   render() {
     return (
       <div>
-        All Dockets here
-        <button onClick={this.approveIt}>approve it</button>
-        <button>reject it</button>
-        {this.renderDockets()}
-
+          {this.renderDockets()}
       </div>
     )
   }
