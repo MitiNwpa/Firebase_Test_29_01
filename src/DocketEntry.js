@@ -6,8 +6,8 @@ import {Link} from '@reach/router';
 
 class DocketEntry extends React.Component{
     
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             activityName:'Dirt removal',
             company: 'cndd',

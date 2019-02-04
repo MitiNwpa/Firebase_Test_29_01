@@ -11,6 +11,8 @@ import Navigation from './Navigation'
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Activity from './Activity';
+import ActivityEnter from './ActivityEnter';
+
 import DocketEntry from './DocketEntry';
 import DocketEntry_1 from './DocketEntry_1';
 import Confirm from './Confirm';
@@ -32,7 +34,8 @@ ReactDOM.render(
                     <User path='/user' />
                     <Contracts path='/contracts' />
                     <Activity path='/activity' />
-                    <DocketEntry path='docketentry' />
+                    <ActivityEnter path='/activityenter' />
+                    <DocketEntry path='docketentry/:userID' />
                     <DocketEntry_1 path='docketentry_1' />
                     <Confirm path='confirm' />
                     <ListDockets path='listdockets' />
